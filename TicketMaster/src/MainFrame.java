@@ -41,7 +41,7 @@ public class MainFrame extends JFrame {
 	public MainFrame() {
 		setTitle("Booking Menu");
 		setLookAndFeel();
-		
+		//Integer.parseInt(args[0]);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

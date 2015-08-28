@@ -117,15 +117,16 @@ public class BookingsFrame extends JFrame {
 		tier1Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				new BookingsManager().setVisible(true);
-
+				//new BookingsManager().setVisible(true);
+				new AddCustomerWindow(1, 65).setVisible(true);
 			}
 		});
 		
 		tier2Button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				new BookingsManager().setVisible(true);
+				
+				new AddCustomerWindow(2, 100).setVisible(true);
+				//new BookingsManager().setVisible(true);
 
 			}
 		});
