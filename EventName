@@ -4,5 +4,15 @@ public enum EventName {
 	KINGS_OF_LEON,
 	KODALINE,
 	BEYONCE;
+	
+	
+	public static String[] getEvents(){
+		String events = "";
+		for(EventName en : EventName.values()){
+			events += en.toString() + "#";
+		}
+		
+		return events.split("#");
+	}
 
 }
