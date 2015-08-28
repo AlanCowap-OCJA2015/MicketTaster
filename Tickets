@@ -1,0 +1,33 @@
+public class Tickets {
+
+		private int ticketPrice;
+		private static int numTickets65;
+		private static int numTickets100;
+		private EventName event;
+		
+		public static int getNumTickets65() {
+			return numTickets65;
+		}
+
+		public static int getNumTickets100() {
+			return numTickets100;
+		}
+		
+	public Tickets(int ticketPrice, EventName event){
+		
+		this.ticketPrice = ticketPrice;
+		this.event = event;
+		
+		if(ticketPrice == 65){
+			ticketPrice++;
+		
+		}else if(ticketPrice == 100){
+			ticketPrice++;
+		}
+		
+		
+		
+	}
+		
+		
+}
