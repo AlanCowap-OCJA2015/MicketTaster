@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,8 +23,14 @@ public class TicketMasterGUI extends JFrame {
 	private JTextField creditCardField;
 	private JComboBox eventBox;
 	
-	private int remaining65 = 60000;
-	private int remaining100 = 20000;
+	ArrayList<Person> people = new ArrayList<Person>();
+	
+	//private int remaining65 = 60000;
+	//private int remaining100 = 20000;
+	String[] events = EventName.getEvents();
+	private Event[] eventsArray = {new Event(EventName.GARTH_BROOKES),new Event(EventName.ED_SHEERAN),
+			new Event(EventName.KINGS_OF_LEON),new Event(EventName.KODALINE),new Event(EventName.BEYONCE)};
+	private Event currentSelectedEvent = eventsArray[0];
 
 	/**
 	 * Launch the application.
@@ -58,13 +65,15 @@ public class TicketMasterGUI extends JFrame {
 		eventName.setBounds(171, 9, 141, 20);
 		contentPane.add(eventName);
 		
-		String[] events = EventName.getEvents();
+		
 		eventBox = new JComboBox(events);
 		eventBox.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent iev) {
 				
 				String selected = (String)eventBox.getSelectedItem();
 				eventName.setText(selected);
+				
+				currentSelectedEvent = eventsArray[eventBox.getSelectedIndex()];
 				
 			}
 		});
@@ -85,7 +94,9 @@ public class TicketMasterGUI extends JFrame {
 		ticketPrice.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				
-				remainingTickets.setText((String) (ticketPrice.getSelectedItem().equals("€65") ? "" + remaining65 : "" + remaining100));
+				remainingTickets.setText(
+						(String) (ticketPrice.getSelectedItem().equals("€65") ?  
+								"" + currentSelectedEvent.getNumTickets65() : "" + currentSelectedEvent.getNumTickets100()));
 				
 			}
 		});
@@ -129,10 +140,24 @@ public class TicketMasterGUI extends JFrame {
 				String creditCardNumber = creditCardField.getText();
 				
 				
+				
 				if(name.length() > 0){
 					if(email.length() > 0 && email.contains("@")){
 						
-						if(creditCardNumber.length() > 0){
+						if(creditCardNumber.length() == 16){
+							
+							Person p = new Person(new StringBuilder(name),new StringBuilder(creditCardNumber),new StringBuilder(email));
+							int price = 0;
+							
+							try{
+								price = Integer.parseInt((String)ticketPrice.getSelectedItem());
+							}catch(NumberFormatException nfe){}
+							
+							p.addTicket(price, currentSelectedEvent);
+							
+							people.add(p);
+							
+							
 							
 						}else{
 							JOptionPane.showMessageDialog(null, "Invalid Credit Card Number");
