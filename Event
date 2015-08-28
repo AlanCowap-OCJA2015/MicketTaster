@@ -27,4 +27,8 @@ public class Event{
 	public int getNumTickets100(){
 		return numTickets100;
 	}
+	
+	public EventName getEventName(){
+		return event;
+	}
 }
