@@ -1,0 +1,8 @@
+public enum EventName {
+	GARTH_BROOKES,
+	ED_SHEERAN,
+	KINGS_OF_LEON,
+	KODALINE,
+	BEYONCE;
+
+}
